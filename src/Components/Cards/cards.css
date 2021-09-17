@@ -1,0 +1,29 @@
+.cards{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100px;
+  padding: 20px;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;
+}
+.card_inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card_inner > span{
+  font-size: 25px;
+}
+.card_inner > p{
+  font-size: 14px;
+}
+
+@media only screen and (max-width:855px) {
+  .main__cards{
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 0;
+  } 
+}

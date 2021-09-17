@@ -1,0 +1,35 @@
+.main__cards{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 30px;
+  margin: 20px 0;
+}
+.raya{
+  margin: 10px 0;
+  padding: 0;
+  width: 100%;
+  background: #93A4E2;
+  height: 30px;
+}
+.raya h3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+}
+.estadisticas__estudios{
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  column-gap: 3rem;
+  row-gap: 2rem;
+
+}
+.card__estadisticas h4{
+  font-weight: 700;
+}
+.card__estadisticas{
+  background: white;
+  padding: 20px;
+}

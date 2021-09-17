@@ -1,0 +1,32 @@
+.tools{
+  overflow-y:auto ; 
+  -webkit-transition:all 0.5s;
+  transition: all 0.5s;
+  margin-top:310px;
+  width: 350px;
+  right: 0;
+  padding: 15px;
+  position:absolute;
+  top: -253px;
+  display: block;
+  z-index: 9999;
+}
+.tools__title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  margin-bottom: 3opx;
+}
+.tools__title h1{
+  font-weight: 700;
+}
+.tools__link  i{
+  margin-right: 15px;
+  font-size: 18px;
+}
+.tools__link{
+  padding: 10px;
+  margin-bottom: 10px;
+
+}
