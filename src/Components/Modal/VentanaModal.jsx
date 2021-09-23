@@ -3,7 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import { FaTimesCircle } from "react-icons/fa";
 
 
-export const VentanaModal = ({texto,DesactivarCatalogos,DesactivarProveedor}) => {
+export const VentanaModal = ({texto,DesactivarCatalogos,DesactivarProveedor,Formulario}) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
 
@@ -22,7 +22,7 @@ export const VentanaModal = ({texto,DesactivarCatalogos,DesactivarProveedor}) =>
   return (
     <>
       <Modal
-        size="sm"
+        size="xl"
         show={show}
         onHide={handleClose}
         backdrop="static"
@@ -37,11 +37,8 @@ export const VentanaModal = ({texto,DesactivarCatalogos,DesactivarProveedor}) =>
           </div>
         </Modal.Header>
         <Modal.Body>
-            <h1>{texto}</h1>
+            <Formulario/>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={CloseModal}>Close</Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ErrorToken } from "../../Action/auth.action";
 import { VentanaModal } from "../../Components/Modal/VentanaModal";
+import {FormularioProveedores} from '../../Components/Formularios/formularioProveedores';
 
 export const NuevoProducto = () => {
   const history = useHistory();
@@ -41,21 +42,13 @@ export const NuevoProducto = () => {
       />
     );
   };
-  DibujarFormulario=()=>{
-    return (
-      <div className="container">
-        <form>
-          
-        </form>
-      </div>
-    )
-  }
   const MostrarProveedores = () => {
     return (
       <VentanaModal
         texto="Proveedores"
         DesactivarCatalogos={DesactivarCatalogos}
         DesactivarProveedor={DesactivarProveedor}
+        Formulario={FormularioProveedores}
       />
     );
   };

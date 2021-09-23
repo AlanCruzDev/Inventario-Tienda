@@ -19,10 +19,10 @@ export const Navegacion = ({openSidebar}) => {
         
       </div>
       <div className="navbar__right">
-        <Link>
+        <Link to>
           <i><FaMedapps/></i>
         </Link>
-        <Link>
+        <Link to>
           <i onClick={()=>setIsComponentVisible(true)}><FaPaintBrush/></i>    
         </Link>
       </div>
