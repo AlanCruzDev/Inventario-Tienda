@@ -3,17 +3,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs_1 = __importDefault(require("fs"));
-var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-var Authentication = /** @class */ (function () {
-    function Authentication() {
-        var _this = this;
+const fs_1 = __importDefault(require("fs"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+class Authentication {
+    constructor() {
         this.Algol = "HS512";
-        this.isAuth = function (req, res, next) {
+        this.isAuth = (req, res, next) => {
             if (req.headers.authorization !== null) {
-                var Token = req.headers.authorization;
-                var PrivateKey = fs_1.default.readFileSync("./src/security/private.pem", "utf8");
-                jsonwebtoken_1.default.verify(Token, PrivateKey, { algorithms: _this.Algol }, function (error) {
+                let Token = req.headers.authorization;
+                let PrivateKey = fs_1.default.readFileSync("./src/security/private.pem", "utf8");
+                jsonwebtoken_1.default.verify(Token, PrivateKey, { algorithms: this.Algol }, (error) => {
                     if (error) {
                         res.status(500).json({ error: "Not Authorized" });
                         return false;
@@ -26,21 +25,16 @@ var Authentication = /** @class */ (function () {
                 return false;
             }
         };
-        this.GenerarToken = function () {
-            var PrivateKey = fs_1.default.readFileSync("./src/security/private.pem", "utf8");
-            var token = jsonwebtoken_1.default.sign({ body: "stuff" }, PrivateKey, {
-                algorithm: _this.Algol,
+        this.GenerarToken = () => {
+            const PrivateKey = fs_1.default.readFileSync("./src/security/private.pem", "utf8");
+            const token = jsonwebtoken_1.default.sign({ body: "stuff" }, PrivateKey, {
+                algorithm: this.Algol,
             });
             return token;
         };
     }
-    Object.defineProperty(Authentication, "instanceWEB", {
-        get: function () {
-            return this.instance || (this.instance = new this());
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return Authentication;
-}());
+    static get instanceWEB() {
+        return this.instance || (this.instance = new this());
+    }
+}
 exports.default = Authentication;

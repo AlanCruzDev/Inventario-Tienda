@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var mysql_1 = __importDefault(require("mysql"));
+const mysql_1 = __importDefault(require("mysql"));
 exports.mysqlConnection = mysql_1.default.createPool({
     host: 'localhost',
     user: 'root',
@@ -12,7 +12,7 @@ exports.mysqlConnection = mysql_1.default.createPool({
     dateStrings: true,
     multipleStatements: true
 });
-exports.mysqlConnection.getConnection(function (err, connection) {
+exports.mysqlConnection.getConnection((err, connection) => {
     if (err) {
         if (err.name === 'PROTOCOL_CONNECTION_LOST') {
             console.log('DATABASE SE CERRO');
