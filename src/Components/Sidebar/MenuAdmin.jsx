@@ -24,6 +24,7 @@ export const MenuAdmin = () => {
           <FaLemon />
         </i>
         <Link
+          to='/listaproductos'
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
           }
@@ -61,6 +62,7 @@ export const MenuAdmin = () => {
           <FaCashRegister />
         </i>
         <Link
+          to=''
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
           }
@@ -76,6 +78,7 @@ export const MenuAdmin = () => {
           <FaCashRegister />
         </i>
         <Link
+          to=''
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
           }
@@ -91,6 +94,7 @@ export const MenuAdmin = () => {
           <FaClipboardList />
         </i>
         <Link
+          to=''
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
           }
@@ -111,6 +115,7 @@ export const MenuAdmin = () => {
           <FaClipboard />
         </i>
         <Link
+          to=''
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
           }
@@ -132,6 +137,7 @@ export const MenuAdmin = () => {
           <FaUser />
         </i>
         <Link
+          to=''
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
           }
@@ -147,6 +153,7 @@ export const MenuAdmin = () => {
           <FaUserSlash />
         </i>
         <Link
+          to=''
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
           }

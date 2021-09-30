@@ -5,6 +5,7 @@ const  useForm = (initialState = {}) => {
   const reset = () => {
     setstateForm(initialState);
   };
+
   const handleInputChange = ({ target }) => {
     setstateForm({
       ...stateForm,

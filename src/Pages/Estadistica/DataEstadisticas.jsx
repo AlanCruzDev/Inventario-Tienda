@@ -26,7 +26,7 @@ export const DataEstadisticas = () => {
       icon: <FaBox size={25} style={{ color: "red" }} />,
       titulo: "Productos",
       subtitulo: "578",
-      path: "/Productos",
+      path: "/listaproductos",
     },
     {
       icon: <FaDollyFlatbed size={25} style={{ color: "violet" }} />,

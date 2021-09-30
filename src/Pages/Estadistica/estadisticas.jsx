@@ -58,7 +58,7 @@ export const Estadisticas = () => {
         </div>
         <div className="estadisticas__estudios">
           <div className="card__estadisticas">
-            <h4>5 estudios mas solicitados en el mes</h4>
+            <h4>5 Productos mas Vendidos</h4>
             <hr />
             <div className="row">
               <div className="col-md-12">

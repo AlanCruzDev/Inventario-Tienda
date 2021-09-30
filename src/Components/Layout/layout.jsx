@@ -9,7 +9,7 @@ import {VentasRealizadas} from '../../Pages/VentasRealizadas/ventasRealizadas';
 import {ErrorToken} from '../../Action/auth.action';
 import {useDispatch} from 'react-redux';
 import {NuevoProducto} from '../../Pages/Catalogos/nuevoProducto';
-
+import {ListaProducto} from '../../Pages/Catalogos/listaProducto';
 export const Layout = () => {
   const history=useHistory();
   const dispatch=useDispatch();
@@ -38,7 +38,8 @@ export const Layout = () => {
         <Switch>
           <WithRoute path="/dash" Component={Estadisticas} />          
           <WithRoute path="/VentasRealizadas" Component={VentasRealizadas} />
-          <WithRoute path="/nuevoProducto" Component={NuevoProducto}/>          
+          <WithRoute path="/nuevoProducto" Component={NuevoProducto}/>    
+          <WithRoute path="/listaproductos" Component={ListaProducto}/>
         </Switch>
         <Sidebar sidebarOpen={sidebarOpen} closeSidebar={CloseSideBar} />
       </div>
