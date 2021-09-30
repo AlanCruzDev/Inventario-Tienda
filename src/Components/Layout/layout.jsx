@@ -10,6 +10,8 @@ import {ErrorToken} from '../../Action/auth.action';
 import {useDispatch} from 'react-redux';
 import {NuevoProducto} from '../../Pages/Catalogos/nuevoProducto';
 import {ListaProducto} from '../../Pages/Catalogos/listaProducto';
+import {EditarProducto} from '../../Pages/Catalogos/EditarProducto';
+
 export const Layout = () => {
   const history=useHistory();
   const dispatch=useDispatch();
@@ -40,6 +42,7 @@ export const Layout = () => {
           <WithRoute path="/VentasRealizadas" Component={VentasRealizadas} />
           <WithRoute path="/nuevoProducto" Component={NuevoProducto}/>    
           <WithRoute path="/listaproductos" Component={ListaProducto}/>
+          <WithRoute path="/editarProducto/:id" Component={EditarProducto}/>
         </Switch>
         <Sidebar sidebarOpen={sidebarOpen} closeSidebar={CloseSideBar} />
       </div>

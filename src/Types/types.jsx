@@ -13,5 +13,6 @@ export const Types = {
   limpiarVaribles:'[Variables] Muerte',
   categoriaObtener:'[Categoria] Exito',
   productoGuardar:'[Producto] ExitoGuardado',
-  productoError:'[Producto] ErrosGuardas'
+  productoError:'[Producto] ErrosGuardas',
+  productoLista:'[Producto] ObtenerListado'
 }

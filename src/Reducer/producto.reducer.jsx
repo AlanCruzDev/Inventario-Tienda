@@ -2,7 +2,8 @@ import React from 'react'
 import { Types } from '../Types/types';
 
 const initialState={
-  bandera:null
+  bandera:null,
+  listadoProducto:null
 }
 
 export default function(state=initialState,action){
@@ -14,6 +15,11 @@ export default function(state=initialState,action){
         ...state,
         bandera:true
       }
+    case Types.productoLista:
+      return{
+        ...state,
+        listadoProducto:action.payload
+      }
     case Types.productoError:
       return {
         ...state,
@@ -21,7 +27,8 @@ export default function(state=initialState,action){
       }
     case Types.limpiarVaribles:
       return{
-        bandera:null
+        bandera:null,
+        listadoProducto:null
       }
   default:
     return state

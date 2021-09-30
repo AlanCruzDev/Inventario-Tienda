@@ -1,5 +1,6 @@
 import { Types } from "../Types/types";
 import clienteAxios from "../Config/axios";
+import TokenAuth from "../Config/axios.headers";
 
 export const InsertarProducto=(data)=>{
   return async (dispatch)=>{
@@ -16,6 +17,26 @@ export const InsertarProducto=(data)=>{
     }
   }
 }
+export const ListarProductos=(id)=>{
+  return async (dispatch)=>{
+    try{
+        const token = JSON.parse(localStorage.getItem('token'));
+        TokenAuth(token);
+        const respuesta = await clienteAxios.get(`/productos/listado/${id}`);
+        dispatch(ExistoListado(respuesta.data));
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
+}
+
+const ExistoListado=(data)=>({
+  type:Types.productoLista,
+  payload:data
+
+});
+
 const ExsitoGuardarProducto=(data)=>({
   type:Types.productoGuardar,
   payload:data
