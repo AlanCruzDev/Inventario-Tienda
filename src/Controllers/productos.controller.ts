@@ -1,36 +1,43 @@
-import express,{Request,Response} from 'express';
-import Controller from '../Interfaces/controllers.interfaces';
-import Authentication from '../MIddelwares/authentication';
-import ProductoService from '../Services/productos.services';
+import express, { Request, Response } from "express";
+import Controller from "../Interfaces/controllers.interfaces";
+import Authentication from "../MIddelwares/authentication";
+import ProductoService from "../Services/productos.services";
 
-export default class ProductosController implements Controller{
+export default class ProductosController implements Controller {
+  public path = "/productos";
+  public router = express.Router();
+  public server = new ProductoService();
+  public validacion = Authentication;
 
-  public path='/productos';
-  public router=express.Router();
-  public server= new ProductoService();
-  public validacion=Authentication;
-
-  constructor(){
+  constructor() {
     this.initializeRoutes();
   }
 
-  initializeRoutes():void{
-    this.router.get(`${this.path}/listado/:id`,this.listarProductos);
-    this.router.get(`${this.path}/:id`,this.ObtenerProducto);
-    this.router.post(`${this.path}`,this.validacion.instanceWEB.GenerarToken,this.insertarProducto);
-    this.router.put(`${this.path}`,this.validacion.instanceWEB.isAuth,this.ModificarProducto);
+  initializeRoutes(): void {
+    this.router.get(`${this.path}/listado/:id`, this.listarProductos);
+    this.router.get(`${this.path}/:id`, this.ObtenerProducto);
+    this.router.post(
+      `${this.path}`,
+      this.validacion.instanceWEB.GenerarToken,
+      this.insertarProducto
+    );
+    this.router.put(
+      `${this.path}`,
+      this.validacion.instanceWEB.isAuth,
+      this.ModificarProducto
+    );
   }
 
-  insertarProducto=(req:Request,res:Response)=>{
-    this.server.insertProducto(req,res);
-  }
-  listarProductos=(req:Request,res:Response)=>{
-    this.server.ListarProductosTienda(req,res);
-  }
-  ModificarProducto=(req:Request,res:Response)=>{
-    this.server.ActualizamosProducto(req,res);
-  }
-  ObtenerProducto=(req:Request,res:Response)=>{
-    this.server.ConsultaProducto(req,res);
-  }
+  insertarProducto = (req: Request, res: Response) => {
+    this.server.insertProducto(req, res);
+  };
+  listarProductos = (req: Request, res: Response) => {
+    this.server.ListarProductosTienda(req, res);
+  };
+  ModificarProducto = (req: Request, res: Response) => {
+    this.server.ActualizamosProducto(req, res);
+  };
+  ObtenerProducto = (req: Request, res: Response) => {
+    this.server.ConsultaProducto(req, res);
+  };
 }

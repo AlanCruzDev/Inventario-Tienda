@@ -10,11 +10,13 @@ const direccion_controller_1 = __importDefault(require("./Controllers/direccion.
 const proveedor_controller_1 = __importDefault(require("./Controllers/proveedor.controller"));
 const categoria_controller_1 = __importDefault(require("./Controllers/categoria.controller"));
 const productos_controller_1 = __importDefault(require("./Controllers/productos.controller"));
+const usuario_controller_1 = __importDefault(require("./Controllers/usuario.controller"));
 const app = new app_1.default([
     new auth_controller_1.default(),
     new direccion_controller_1.default(),
     new proveedor_controller_1.default(),
     new categoria_controller_1.default(),
-    new productos_controller_1.default()
+    new productos_controller_1.default(),
+    new usuario_controller_1.default()
 ], enviroment_1.SERVER_PORT);
 app.listenn();

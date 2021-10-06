@@ -15,3 +15,6 @@ export const queryProductosTIenda={
   procedimientoActualizar:' call ActualizarProducto (?,?,?,?,?,?,?,?,?)',
   ObtenerProducto:'select P.idProducto, P.NombreProducto, P.Precio, A.Cantidad , PR.NombreProveedor,CA.NombreCategoria, P.CodigoSerie FROM Tienda T INNER join Almacen A on T.idTienda = A.fkTienda INNER join Producto P on A.fkProducto = P.idProducto INNER JOIN Proveedor PR ON P.fkProveedor =PR.idProveedor INNER JOIN Categoria CA ON CA.idCategoria =P.fkCategoria WHERE (1=1) AND P.idProducto = ?'
 }
+export const queryEmpleadoTienda={
+  registroempleado:'call InsertarEmpleado(?,?,?,?,?,?,?)'
+}
