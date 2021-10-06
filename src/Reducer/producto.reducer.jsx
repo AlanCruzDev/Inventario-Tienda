@@ -3,7 +3,8 @@ import { Types } from '../Types/types';
 
 const initialState={
   bandera:null,
-  listadoProducto:null
+  listadoProducto:null,
+  productouno:null
 }
 
 export default function(state=initialState,action){
@@ -14,6 +15,11 @@ export default function(state=initialState,action){
       return{
         ...state,
         bandera:true
+      }
+    case Types.productoUno:
+      return{
+        ...state,
+        productouno:action.payload
       }
     case Types.productoLista:
       return{
@@ -28,7 +34,8 @@ export default function(state=initialState,action){
     case Types.limpiarVaribles:
       return{
         bandera:null,
-        listadoProducto:null
+        listadoProducto:null,
+        producto:null
       }
   default:
     return state

@@ -8,6 +8,7 @@ import {
 } from "../../Action/productos.action";
 import { ErrorToken } from "../../Action/auth.action";
 import { FaTrash, FaPen } from "react-icons/fa";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 
 
@@ -22,7 +23,7 @@ export const ListaProducto = () => {
 
   const { listadoProducto } = producto;
   const data = !!listadoProducto && listadoProducto.results;
-  console.log(data);
+  
 
   useEffect(() => {
     dispatch(ListarProductos(idTienda));
@@ -82,7 +83,9 @@ export const ListaProducto = () => {
     return content;
   };
   const TablaDibujar = () => {
-    return <Table Header={Header} Content={Content} />;
+    return <Table Header={Header} Content={Content} 
+    idnombre="tablaProducto"
+    />;
   };
   return (
     <main>
@@ -94,7 +97,14 @@ export const ListaProducto = () => {
           <div className="card-header">
             <ul className="nav card-header-tabs ml-auto">
               <li className="d-inline p-2">
-                <button className="btn btn-secondary">Generar Exel</button>
+                <ReactHTMLTableToExcel
+                  id="tablaProductos"
+                  className="btn btn-secondary"
+                  table="tablaProducto"
+                  filename="listaProductosxls"
+                  sheet="Productosjajajajaxls"
+                  buttonText="Descargar EXEL"
+                />
               </li>
             </ul>
           </div>

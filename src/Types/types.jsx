@@ -14,5 +14,6 @@ export const Types = {
   categoriaObtener:'[Categoria] Exito',
   productoGuardar:'[Producto] ExitoGuardado',
   productoError:'[Producto] ErrosGuardas',
-  productoLista:'[Producto] ObtenerListado'
+  productoLista:'[Producto] ObtenerListado',
+  productoUno:'[Producto] ObtenerProducto'
 }

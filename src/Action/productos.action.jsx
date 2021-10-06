@@ -6,7 +6,6 @@ export const InsertarProducto=(data)=>{
   return async (dispatch)=>{
     try{
       const respuesta = await clienteAxios.post('/productos',data);
-      console.log(respuesta.data);
       if(respuesta.data.ok === true){
         dispatch(ExsitoGuardarProducto());
       }else{
@@ -26,7 +25,39 @@ export const ListarProductos=(id)=>{
         dispatch(ExistoListado(respuesta.data));
     }
     catch(e){
-      console.log(e);
+      alert(e);
+    }
+  }
+}
+export const ObtenerProducto=(id)=>{
+  return async (dispatch)=>{
+    try{
+      const token = JSON.parse(localStorage.getItem('token'));
+      TokenAuth(token);
+      const respuesta = await clienteAxios.get(`/productos/${id}`);
+      if(respuesta.data.ok === true){
+        dispatch(ObtenerUnoProducto(respuesta.data));
+      }else{
+        dispatch(ErrorGuardarProducto());
+      }
+    }catch(e){
+      alert(e);
+    }
+  }
+}
+export const ActualizarProducto=(data)=>{
+  return async (dispatch)=>{
+    try{
+      const token = JSON.parse(localStorage.getItem('token'));
+      TokenAuth(token);
+      const respuesta = await clienteAxios.put('/productos',data);
+      if(respuesta.data.ok === true){
+        dispatch(ExsitoGuardarProducto());
+      }else{
+        dispatch(ErrorGuardarProducto());
+      }
+    }catch(e){
+      alert(e);
     }
   }
 }
@@ -47,4 +78,9 @@ const ErrorGuardarProducto=()=>({
 });
 export const LimpiarVariables=()=>({
   type:Types.limpiarVaribles
-})
+});
+
+const ObtenerUnoProducto=(data)=>({
+  type:Types.productoUno,
+  payload:data
+});

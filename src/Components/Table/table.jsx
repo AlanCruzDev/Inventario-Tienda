@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const Table = ({Header,Content}) => {
+export const Table = ({Header,Content,idnombre}) => {
   return (
-    <table class="table table-striped table-responsive">
+    <table class="table table-striped table-responsive" id={idnombre}>
       <thead>
         {<Header/>}
       </thead>
