@@ -12,8 +12,8 @@ export default class ProveedorController implements Controller{
 
   constructor() {
     this.initializeRoutes();
-
   }
+  
   initializeRoutes():void{
     this.router.post(`${this.path}`,this.validacion.instanceWEB.isAuth,this.GuardarProveedor);
     this.router.get(`${this.path}`,this.getProveedores);
