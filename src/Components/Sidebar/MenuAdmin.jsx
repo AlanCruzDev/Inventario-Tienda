@@ -137,7 +137,7 @@ export const MenuAdmin = () => {
           <FaUser />
         </i>
         <Link
-          to=''
+          to='/registrousuario'
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
           }

@@ -11,6 +11,8 @@ import {useDispatch} from 'react-redux';
 import {NuevoProducto} from '../../Pages/Catalogos/nuevoProducto';
 import {ListaProducto} from '../../Pages/Catalogos/listaProducto';
 import {EditarProducto} from '../../Pages/Catalogos/EditarProducto';
+import { RegistroUsuario } from "../../Pages/Usuarios/RegistroUsuario";
+
 
 export const Layout = () => {
   const history=useHistory();
@@ -43,6 +45,7 @@ export const Layout = () => {
           <WithRoute path="/nuevoProducto" Component={NuevoProducto}/>    
           <WithRoute path="/listaproductos" Component={ListaProducto}/>
           <WithRoute path="/editarProducto/:id" Component={EditarProducto}/>
+          <WithRoute path="/registrousuario" Component={RegistroUsuario}/>
         </Switch>
         <Sidebar sidebarOpen={sidebarOpen} closeSidebar={CloseSideBar} />
       </div>

@@ -38,6 +38,8 @@ export const Sidebar = ({ sidebarOpen, closeSidebar }) => {
       </div>
       <div className="sidebar__menu">
         {(Admin  == 1) ? (<MenuAdmin/>) : (<MenuEmpleado/>)}
+
+        
         <h2
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
@@ -55,6 +57,7 @@ export const Sidebar = ({ sidebarOpen, closeSidebar }) => {
             <FaSignInAlt />
           </i>
           <Link
+            to=''
             style={
               color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
             }

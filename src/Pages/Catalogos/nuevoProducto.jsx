@@ -159,7 +159,7 @@ export const NuevoProducto = () => {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="col-6">
+              <div className="col-md-6">
                 <label htmlFor="inputAddress" className="form-label">
                   Precio
                 </label>
@@ -172,7 +172,7 @@ export const NuevoProducto = () => {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="col-6">
+              <div className="col-md-6">
                 <label htmlFor="formFile" className="form-label">
                   Selecciona una Imagen
                 </label>

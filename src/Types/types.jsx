@@ -15,5 +15,8 @@ export const Types = {
   productoGuardar:'[Producto] ExitoGuardado',
   productoError:'[Producto] ErrosGuardas',
   productoLista:'[Producto] ObtenerListado',
-  productoUno:'[Producto] ObtenerProducto'
+  productoUno:'[Producto] ObtenerProducto',
+  registroUsuario:'[Usuario] registroUsuarioExito',
+  fracasoregistoUsuario:'[Usuario] registroUsuarioFracaso'
+
 }
