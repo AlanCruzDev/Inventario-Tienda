@@ -4,12 +4,15 @@ import{useDispatch,useSelector} from 'react-redux';
 import useForm from '../../Hooks/useForm';
 import { useHistory } from "react-router-dom";
 import {IniciarSesion} from '../../Action/auth.action';
+import {ChecaAcceso} from '../../middlewares/utilidades';
 export const Login = () => {
 
   const dispatch=useDispatch();
   const history=useHistory();
 
-  const login=useSelector(selector => selector.auth);
+  const {logeado, dateUser}=useSelector(selector => selector.auth);
+  const datos =!!dateUser && dateUser[0];
+  const {Admin,Empleado}=!!datos && datos.results[0];
 
   const[values,handleInputChange]=useForm({
     usser:'',
@@ -19,10 +22,11 @@ export const Login = () => {
   const{usser,password}=values;
 
   useEffect(()=>{
-    if(login.logeado){
-      history.push('/dash');      
+    if(logeado){
+      var ruta=ChecaAcceso(Admin,Empleado);
+      history.push(ruta);      
     }
-  },[login.logeado])
+  },[logeado])
 
   const VerificarUser=(e)=>{
     e.preventDefault();

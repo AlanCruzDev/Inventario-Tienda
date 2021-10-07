@@ -19,7 +19,7 @@ export const Navegacion = ({openSidebar}) => {
         
       </div>
       <div className="navbar__right">
-        <Link to>
+        <Link to=''>
           <i><FaMedapps/></i>
         </Link>
         <Link to>

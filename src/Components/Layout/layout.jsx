@@ -4,10 +4,12 @@ import { Navegacion } from "../Navbar/navegacion";
 import { Sidebar } from "../Sidebar/Sidebar";
 import { BrowserRouter as Router, Switch,useHistory } from "react-router-dom";
 import { WithRoute } from "../WithRoute/WithRouteComponent";
-import {Estadisticas} from '../../Pages/Estadistica/estadisticas';
-import {VentasRealizadas} from '../../Pages/VentasRealizadas/ventasRealizadas';
 import {ErrorToken} from '../../Action/auth.action';
 import {useDispatch} from 'react-redux';
+
+/*Componentes*/
+import {Estadisticas} from '../../Pages/Estadistica/estadisticas';
+import {VentasRealizadas} from '../../Pages/VentasRealizadas/ventasRealizadas';
 import {NuevoProducto} from '../../Pages/Catalogos/nuevoProducto';
 import {ListaProducto} from '../../Pages/Catalogos/listaProducto';
 import {EditarProducto} from '../../Pages/Catalogos/EditarProducto';

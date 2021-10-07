@@ -24,7 +24,7 @@ export const MenuEmpleado =()=>{
           <FaAppleAlt />
         </i>
         <Link
-          to="/hola"
+          to="/catalogoproductos"
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
           }
