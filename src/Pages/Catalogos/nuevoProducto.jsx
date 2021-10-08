@@ -6,21 +6,25 @@ import useForm from "../../Hooks/useForm";
 import { GetCategoria } from "../../Action/categoria.action";
 import { ListarProveedores } from "../../Action/proveedor.action";
 import { ErrorToken } from "../../Action/auth.action";
-import {InsertarProducto,LimpiarVariables} from '../../Action/productos.action';
+import {
+  InsertarProducto,
+  LimpiarVariables,
+} from "../../Action/productos.action";
 
 import { VentanaModal } from "../../Components/Modal/VentanaModal";
 import { FormularioProveedores } from "../../Components/Formularios/formularioProveedores";
-import {MensajeAlerta} from '../../middlewares/alerts.middle';
+import { MensajeAlerta } from "../../middlewares/alerts.middle";
 
 export const NuevoProducto = () => {
-
   const history = useHistory();
   const dispatch = useDispatch();
   const [proveedorSet, getproveedor] = useState(false);
-  const [getimagen,setImagen]=useState('');
-  const { categorias, proveedor,auth,producto } = useSelector((state) => state);
+  const [getimagen, setImagen] = useState("");
+  const { categorias, proveedor, auth, producto } = useSelector(
+    (state) => state
+  );
 
-  const [values, handleInputChange,reset] = useForm({
+  const [values, handleInputChange, reset] = useForm({
     NombreProducto: "",
     Precio: 0,
     CodigoSerie: "",
@@ -43,8 +47,8 @@ export const NuevoProducto = () => {
     FechaLllegada,
   } = values;
 
-  const {dateUser}=auth;
-  const {idTienda}=dateUser[0].results[0];
+  const { dateUser } = auth;
+  const { idTienda } = dateUser[0].results[0];
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
@@ -52,13 +56,19 @@ export const NuevoProducto = () => {
       dispatch(ErrorToken());
       history.push("/auth");
     }
+    return () => {
+      dispatch(LimpiarVariables());
+    };
+  }, [proveedorSet]);
+
+  useEffect(() => {
     dispatch(GetCategoria());
     dispatch(ListarProveedores());
 
     return () => {
       dispatch(LimpiarVariables());
     };
-  }, [proveedorSet]);
+  }, [producto.bandera]);
 
   const ActivarProveedor = () => {
     getproveedor(true);
@@ -67,24 +77,24 @@ export const NuevoProducto = () => {
     getproveedor(false);
   };
 
-  const uploadImagen=async(e)=>{
-    const file=e.target.files[0];
-    const base64= await convertBase64(file);
-    setImagen(base64)
-  }
+  const uploadImagen = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertBase64(file);
+    setImagen(base64);
+  };
 
-  const convertBase64=(archivo)=>{
-    return new Promise((resolve,reject)=>{
+  const convertBase64 = (archivo) => {
+    return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(archivo);
-      fileReader.onload=()=>{
+      fileReader.onload = () => {
         resolve(fileReader.result);
-      }
-      fileReader.onerror=(error)=>{
+      };
+      fileReader.onerror = (error) => {
         reject(error);
-      }
+      };
     });
-  }
+  };
 
   const MostrarProveedores = () => {
     return (
@@ -103,15 +113,19 @@ export const NuevoProducto = () => {
       NombreProducto,
       Precio,
       CodigoSerie,
-      Imagen:getimagen,
+      Imagen: getimagen,
       fkProveedor,
       fkCategoria,
       Cantidad,
       FechaLllegada,
-      fkTienda:idTienda,
+      fkTienda: idTienda,
     };
-    dispatch(InsertarProducto(body));
-    reset();
+    if (fkCategoria !== 0 || fkProveedor !== 0) {
+      dispatch(InsertarProducto(body));
+    }else{
+      alert('Seleccione Categoria/Proveedor');
+    }
+    //reset();
   };
 
   return (
@@ -176,7 +190,11 @@ export const NuevoProducto = () => {
                 <label htmlFor="formFile" className="form-label">
                   Selecciona una Imagen
                 </label>
-                <input className="form-control" type="file" onChange={(e) => uploadImagen(e)} />
+                <input
+                  className="form-control"
+                  type="file"
+                  onChange={(e) => uploadImagen(e)}
+                />
               </div>
               <div className="col-md-6">
                 <label htmlFor="inputState" className="form-label">
@@ -188,7 +206,8 @@ export const NuevoProducto = () => {
                   value={fkProveedor}
                   onChange={handleInputChange}
                 >
-                  { (proveedor.proveedorList !== null  && proveedor.proveedorList !== undefined)
+                  {proveedor.proveedorList !== null &&
+                  proveedor.proveedorList !== undefined
                     ? proveedor.proveedorList.map((value, index) => (
                         <option key={index} value={value.idProveedor}>
                           {value.NombreProveedor}
@@ -251,11 +270,14 @@ export const NuevoProducto = () => {
           </div>
         </div>
         {proveedorSet ? MostrarProveedores() : null}
-        <div>{MensajeAlerta(producto.bandera,
-          'Producto'
-          ,'producto registrado'
-          ,'producto no registrado'
-          )}</div>
+        <div>
+          {MensajeAlerta(
+            producto.bandera,
+            "Producto",
+            "producto registrado",
+            "producto no registrado"
+          )}
+        </div>
       </div>
     </main>
   );

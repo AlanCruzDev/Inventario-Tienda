@@ -5,6 +5,8 @@ import TokenAuth from "../Config/axios.headers";
 export const InsertarProducto=(data)=>{
   return async (dispatch)=>{
     try{
+      const token = JSON.parse(localStorage.getItem('token'));
+      TokenAuth(token);
       const respuesta = await clienteAxios.post('/productos',data);
       if(respuesta.data.ok === true){
         dispatch(ExsitoGuardarProducto());
