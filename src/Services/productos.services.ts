@@ -12,7 +12,7 @@ export default class ProductoService {
   insertProducto = (req: Request, res: Response) => {
     const body: ProductoInterface = req.body
     try {
-      mysqlConnection.query(
+     mysqlConnection.query(
         'call InsertarProducto(?,?,?,?,?,?,?,?,?)',
         [
           body.NombreProducto,
@@ -33,6 +33,7 @@ export default class ProductoService {
           } else {
             res.json({
               ok: false,
+              error
             })
           }
         },
