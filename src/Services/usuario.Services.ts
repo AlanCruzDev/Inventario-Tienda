@@ -3,6 +3,7 @@ import { mysqlConnection } from "../database/db";
 import { queryEmpleadoTienda } from "../Consultas/querys";
 import { MysqlError } from "mysql";
 import { Usuario } from "../Interfaces/usuario.interface";
+import {parseMysqlPost} from '../MIddelwares/utilidades';
 
 export default class UsuarioServices {
   InsertarUsuario = async (req: Request, res: Response) => {
@@ -20,15 +21,17 @@ export default class UsuarioServices {
       ],
       (error: MysqlError | null, results: [], fields: any) => {
         if(!error){
-          return res.status(200).json({
-            ok:true
-          });
+          /*validamos l insercesion del usuario*/
+          if(parseMysqlPost(results) === -1){
+            res.json({
+              ok: false,
+            });
+          }else{
+            res.json({
+              ok: true,
+            });
+          }
         }
-        console.log(error.errno);
-        return res.json({
-          ok:false,
-          error
-        });
       }
     );
   };

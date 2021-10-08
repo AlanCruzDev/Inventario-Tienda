@@ -22,8 +22,8 @@ class AuthService {
             try {
                 yield db_1.mysqlConnection.query(querys_1.querysLogeo.busquedaUsuario, [data.usser, null], (error, results, fields) => {
                     if (!error) {
-                        if ((results[0].contraseña.length > 0
-                            ? results[0].contraseña
+                        if ((results[0].contrasena.length > 0
+                            ? results[0].contrasena
                             : "") === data.password) {
                             return res.status(200).json({
                                 ok: true,

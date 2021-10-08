@@ -14,13 +14,13 @@ export default class ProductosController implements Controller {
   }
 
   initializeRoutes(): void {
-    this.router.get(`${this.path}/listado/:id`, this.listarProductos);
-    this.router.get(`${this.path}/:id`, this.ObtenerProducto);
     this.router.post(
       `${this.path}`,
-      this.validacion.instanceWEB.GenerarToken,
+      this.validacion.instanceWEB.isAuth,
       this.insertarProducto
     );
+    this.router.get(`${this.path}/listado/:id`, this.listarProductos);
+    this.router.get(`${this.path}/:id`, this.ObtenerProducto);
     this.router.put(
       `${this.path}`,
       this.validacion.instanceWEB.isAuth,

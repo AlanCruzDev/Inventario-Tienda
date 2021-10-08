@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { mysqlConnection } from '../database/db'
 import { queryProductosTIenda } from '../Consultas/querys'
 import { MysqlError } from 'mysql'
+import {parseMysqlPost} from '../MIddelwares/utilidades';
 import {
   ProductoInterface,
   ProductoActualizar,
@@ -89,9 +90,15 @@ export default class ProductoService {
         ],
         (error: MysqlError | null, results: any, fields: any) => {
           if (!error) {
-            res.json({
-              ok: true,
-            })
+            if(parseMysqlPost(results) === -1){
+              res.json({
+                ok: false,
+              });
+            }else{
+              res.json({
+                ok: true,
+              });
+            }
           } else {
             res.json({
               ok: false,

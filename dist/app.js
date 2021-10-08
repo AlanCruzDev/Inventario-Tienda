@@ -8,9 +8,9 @@ const cors_1 = __importDefault(require("cors"));
 const http_1 = require("http");
 class App {
     constructor(controllers, port) {
-        this.app = express_1.default();
+        this.app = (0, express_1.default)();
         this.port = port;
-        this.httpServer = http_1.createServer(this.app).listen(port);
+        this.httpServer = (0, http_1.createServer)(this.app).listen(port);
         this.initializeMiddlewares();
         this.initializeController(controllers);
     }
@@ -20,7 +20,7 @@ class App {
         });
     }
     initializeMiddlewares() {
-        this.app.use(cors_1.default({ origin: true, credentials: true }));
+        this.app.use((0, cors_1.default)({ origin: true, credentials: true }));
         this.app.use(express_1.default.json());
     }
     listenn() {

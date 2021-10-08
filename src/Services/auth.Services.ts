@@ -14,8 +14,8 @@ export default class AuthService {
         (error: MysqlError | null, results: any[], fields: any) => {
           if (!error) {
             if (
-              (results[0].contraseña.length > 0
-                ? results[0].contraseña
+              (results[0].contrasena.length > 0
+                ? results[0].contrasena
                 : "") === data.password
             ) {
               return res.status(200).json({
