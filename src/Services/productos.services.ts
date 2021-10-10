@@ -140,4 +140,11 @@ export default class ProductoService {
       })
     }
   }
+
+  BuscarProductoCodigoBarras=(req:Request,res:Response)=>{
+    const {codigo,idtienda}=req.params;
+    console.log({codigo,idtienda});
+    return res.json({ok:true});
+
+  }
 }

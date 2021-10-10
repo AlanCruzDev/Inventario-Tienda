@@ -12,22 +12,24 @@ export default class AuthService {
         querysLogeo.busquedaUsuario,
         [data.usser, null],
         (error: MysqlError | null, results: any[], fields: any) => {
-          if (!error) {
-            if (
-              (results[0].contrasena.length > 0
-                ? results[0].contrasena
-                : "") === data.password
-            ) {
-              return res.status(200).json({
-                ok: true,
-                results,
-                token: Authentication.instanceWEB.GenerarToken(),
-              });
-            } else {
-              return res.status(401).json({
-                ok: false,
-              });
+          try{
+            if (!error) {
+              if ((results[0].contrasena.length > 0? results[0].contrasena: "") === data.password) {
+                return res.status(200).json({
+                  ok: true,
+                  results,
+                  token: Authentication.instanceWEB.GenerarToken(),
+                });
+              } else {
+                return res.status(401).json({
+                  ok: false,
+                });
+              } 
             }
+          }catch(e){
+            return res.status(401).json({
+              ok: false,
+            });
           }
         }
       );

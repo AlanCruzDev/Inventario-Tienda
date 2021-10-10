@@ -1,5 +1,6 @@
 import App from './app';
-import { SERVER_PORT } from './Config/enviroment';
+import dotenv from "dotenv";
+dotenv.config();
 import AuthController from './Controllers/auth.controller';
 import DireccionController from './Controllers/direccion.controller';
 import ProveedorController from './Controllers/proveedor.controller';
@@ -14,5 +15,5 @@ const app = new App([
     new CategoriaController(),
     new ProductosController(),
     new UsuarioController()
-],SERVER_PORT);
+],Number (process.env.SERVER_PORT));
 app.listenn();

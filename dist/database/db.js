@@ -7,9 +7,9 @@ exports.mysqlConnection = void 0;
 const mysql_1 = __importDefault(require("mysql"));
 exports.mysqlConnection = mysql_1.default.createPool({
     host: 'localhost',
-    user: 'root',
-    password: 'alancruz1998',
-    database: 'sisVentas',
+    user: process.env.acceso,
+    password: process.env.contraseña,
+    database: process.env.bd,
     dateStrings: true,
     multipleStatements: true
 });

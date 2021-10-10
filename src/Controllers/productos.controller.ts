@@ -14,13 +14,14 @@ export default class ProductosController implements Controller {
   }
 
   initializeRoutes(): void {
-    this.router.post(
+    this.router.post( 
       `${this.path}`,
       this.validacion.instanceWEB.isAuth,
       this.insertarProducto
     );
     this.router.get(`${this.path}/listado/:id`, this.listarProductos);
     this.router.get(`${this.path}/:id`, this.ObtenerProducto);
+    this.router.get(`${this.path}/barras/:codigo/:idtienda`,this.validacion.instanceWEB.isAuth,this.ObtenerCodigoBarras);
     this.router.put(
       `${this.path}`,
       this.validacion.instanceWEB.isAuth,
@@ -40,4 +41,8 @@ export default class ProductosController implements Controller {
   ObtenerProducto = (req: Request, res: Response) => {
     this.server.ConsultaProducto(req, res);
   };
+  ObtenerCodigoBarras=(req:Request,res:Response)=>{
+    this.server.BuscarProductoCodigoBarras(req,res);
+  }
+
 }

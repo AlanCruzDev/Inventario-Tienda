@@ -4,7 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./app"));
-const enviroment_1 = require("./Config/enviroment");
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const auth_controller_1 = __importDefault(require("./Controllers/auth.controller"));
 const direccion_controller_1 = __importDefault(require("./Controllers/direccion.controller"));
 const proveedor_controller_1 = __importDefault(require("./Controllers/proveedor.controller"));
@@ -18,5 +19,5 @@ const app = new app_1.default([
     new categoria_controller_1.default(),
     new productos_controller_1.default(),
     new usuario_controller_1.default()
-], enviroment_1.SERVER_PORT);
+], Number(process.env.SERVER_PORT));
 app.listenn();
