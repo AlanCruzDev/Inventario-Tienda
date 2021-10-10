@@ -3,8 +3,8 @@ import mysql from 'mysql';
 export const mysqlConnection = mysql.createPool({
     host: 'localhost',
     user: process.env.acceso,
-    password: process.env.contraseña,
-    database: process.env.bd,
+    password: process.env.contrasena,
+    database: process.env.bdNombre,
     dateStrings: true,
     multipleStatements: true
 });
