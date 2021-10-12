@@ -7,6 +7,7 @@ import { WithRoute } from "../WithRoute/WithRouteComponent";
 import {ErrorToken} from '../../Action/auth.action';
 import {useDispatch} from 'react-redux';
 import {CatalogoProductos} from '../../Pages/Productos/CatalogoProductos';
+import { CarroCompra } from "../../Pages/CarritoCompras/CarroCompra";
 
 export const LayoutEmpleado=()=>{
   
@@ -35,7 +36,8 @@ export const LayoutEmpleado=()=>{
       <div className="contenedor">
         <Navegacion  openSidebar={OpenSideBar} />
         <Switch>  
-          <WithRoute path="/catalogoproductos" Component={CatalogoProductos}/>       
+          <WithRoute path="/catalogoproductos" Component={CatalogoProductos}/>   
+          <WithRoute path="/carrito" Component={CarroCompra}/>       
         </Switch>
         <Sidebar sidebarOpen={sidebarOpen} closeSidebar={CloseSideBar} />
       </div>

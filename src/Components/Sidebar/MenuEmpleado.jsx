@@ -45,7 +45,7 @@ export const MenuEmpleado =()=>{
           <FaClipboard/>
         </i>
         <Link
-          to="/hola"
+          to="/carrito"
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
           }
