@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const http_1 = require("http");
 const socket_io_1 = require("socket.io");
-const socket_1 = __importDefault(require("./Socket/socket"));
+const socket_1 = require("./Socket/socket");
 class App {
     constructor(controllers, port) {
         this.app = (0, express_1.default)();
@@ -24,7 +24,7 @@ class App {
         });
     }
     configSocket() {
-        new socket_1.default(this.io);
+        (0, socket_1.crearSocketServidor)(this.io);
     }
     initializeMiddlewares() {
         this.app.use((0, cors_1.default)({ origin: true, credentials: true }));

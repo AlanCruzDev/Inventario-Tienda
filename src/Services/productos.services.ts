@@ -1,12 +1,13 @@
 import { Request, Response } from 'express'
-import { mysqlConnection } from '../database/db'
-import { queryProductosTIenda } from '../Consultas/querys'
+import { mysqlConnection } from '../database/db';
+import { queryProductosTIenda, } from '../Consultas/querys'
 import { MysqlError } from 'mysql'
 import {parseMysqlPost} from '../MIddelwares/utilidades';
 import {
   ProductoInterface,
   ProductoActualizar,
 } from '../Interfaces/producto.interface'
+import {EnviarCodigo} from '../Socket/socket'
 
 export default class ProductoService {
   insertProducto = (req: Request, res: Response) => {
@@ -141,10 +142,19 @@ export default class ProductoService {
     }
   }
 
-  BuscarProductoCodigoBarras=(req:Request,res:Response)=>{
+  BuscarProductoCodigoBarras= async(req:Request,res:Response)=>{
     const {codigo,idtienda}=req.params;
-    console.log({codigo,idtienda});
-    return res.json({ok:true});
-
+    try{
+      await mysqlConnection.query(queryProductosTIenda.ObtenerProductoCodigoTienda,[codigo,Number(idtienda)],(error:MysqlError | null, results:any[],fields:any)=>{
+        if(!error){
+         EnviarCodigo(results);
+          return res.json({ok:true});
+        }else{
+          return res.json({ok:false});
+        }
+      });
+    }catch(e){
+      res.json({ok:false,e});
+    }
   }
 }

@@ -1,9 +1,8 @@
 import express from "express";
 import cors from "cors";
 import http, { createServer } from "http";
-import {Server} from 'socket.io';
-import Sockets from "./Socket/socket";
-
+import {Server, Socket} from 'socket.io';
+import {crearSocketServidor} from './Socket/socket';
 export default class App {
   public app: express.Application;
   public port: number;
@@ -25,7 +24,7 @@ export default class App {
     });
   }
   private configSocket(){
-    new Sockets(this.io);
+    crearSocketServidor(this.io);
   }
   private initializeMiddlewares() {
     this.app.use(cors({ origin: true, credentials: true }));

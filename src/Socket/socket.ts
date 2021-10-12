@@ -1,18 +1,14 @@
-import {Server,Socket} from 'socket.io';
-export default class Sockets{
+import {Socket,Server} from 'socket.io';
+let io:Server;
 
-  public io:Server;
+export const crearSocketServidor=(server:Server)=>{
+  io=server;
+  console.log('Escuchando sockets');
+  io.on('connection',(socket:Socket)=>{
+    console.log('cliente conectado');
+  });
+}
 
-  constructor(io:Server){
-    this.io=io;
-    this.socketEventos();
-  }
-
-  private socketEventos():void{
-    console.log('Escuchando sockets');
-    this.io.on('connection', (cliente:Socket)=>{
-      console.log('cliente conectado');
-
-    });
-  }
+export const EnviarCodigo=(result:any[])=>{
+  io.emit('enviar-codigo',result);
 }
