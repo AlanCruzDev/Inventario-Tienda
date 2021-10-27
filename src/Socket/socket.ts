@@ -9,6 +9,7 @@ export const crearSocketServidor=(server:Server)=>{
   });
 }
 
-export const EnviarCodigo=(result:any[])=>{
-  io.emit('enviar-codigo',result);
+export const EnviarCodigo=(result:any[],idTienda:number)=>{
+  const body ={result,idTienda}
+  io.emit('enviar-codigo',body);
 }

@@ -28,7 +28,8 @@ export default class App {
   }
   private initializeMiddlewares() {
     this.app.use(cors({ origin: true, credentials: true }));
-    this.app.use(express.json());
+    this.app.use(express.json({limit:'50mb'}));
+    this.app.use(express.urlencoded({limit: '50mb'}));
   }
   public listenn() {
     console.log(`App listening on the port ${this.port}`);

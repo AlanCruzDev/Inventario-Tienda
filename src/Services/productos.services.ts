@@ -76,8 +76,7 @@ export default class ProductoService {
   ActualizamosProducto = (req: Request, res: Response) => {
     const body: ProductoActualizar = req.body
     try {
-      console.log(body)
-      mysqlConnection.query(
+     mysqlConnection.query(
         queryProductosTIenda.procedimientoActualizar,
         [
           body._NombreProducto,
@@ -147,7 +146,7 @@ export default class ProductoService {
     try{
       await mysqlConnection.query(queryProductosTIenda.ObtenerProductoCodigoTienda,[codigo,Number(idtienda)],(error:MysqlError | null, results:any[],fields:any)=>{
         if(!error){
-         EnviarCodigo(results);
+         EnviarCodigo(results,Number(idtienda));
           return res.json({ok:true});
         }else{
           return res.json({ok:false});
