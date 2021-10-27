@@ -18,5 +18,6 @@ export const Types = {
   productoUno:'[Producto] ObtenerProducto',
   registroUsuario:'[Usuario] registroUsuarioExito',
   fracasoregistoUsuario:'[Usuario] registroUsuarioFracaso',
-  agregarproductocarrito:'[Carrito] agregaproducto'
+  agregarproductocarrito:'[Carrito] agregaproducto',
+  actualizarCarrito:'[Carrito] actualizarcarrito'
 }

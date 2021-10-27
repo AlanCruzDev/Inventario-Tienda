@@ -14,3 +14,12 @@ const AgregarCarrito=(data)=>({
   type:Types.agregarproductocarrito,
   payload:data
 });
+
+export const LimpiarVariables=()=>({
+  type:Types.limpiarVaribles
+});
+
+export const ActualizarCarrito=(data)=>({
+  type:Types.actualizarCarrito,
+  payload:data
+});

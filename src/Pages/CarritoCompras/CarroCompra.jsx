@@ -1,64 +1,175 @@
 import React, { useEffect, useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import proyectSocket from "../../context/socketContext";
-import './carrito.css';
+import { Table } from "../../Components/Table/table";
+import { useDispatch, useSelector } from "react-redux";
+import { MostrarProducto } from "./mostrarProducto";
+import "./carrito.css";
+
+import {
+  CarritoCompras,
+  LimpiarVariables,
+  ActualizarCarrito,
+} from "../../Action/carrito";
+import { ErrorToken } from "../../Action/auth.action";
+import "./carrito.css";
 
 export const CarroCompra = () => {
-  
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const { carrito, auth } = useSelector((state) => state);
+  const { _carrito } = carrito;
+
   const socketContext = useContext(proyectSocket);
-  const { socket, online } = socketContext;
+  const { socket } = socketContext;
+
   const [_producto, _setproducto] = useState(null);
+  const [geTienda,setTienda] = useState(null);
+
+  const { dateUser } = auth;
+  const { idTienda, idUsuario } = dateUser[0].results[0];
+
+  const totalCantida = !!_carrito && _carrito[0];
+
+  // suma de precios del carrito de compras
+  const [suma, setSuma] = useState(0)
+  
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    if (!token) {
+      dispatch(ErrorToken());
+      history.push("/auth");
+    }
+  }, []);
 
   useEffect(() => {
     socket.on("enviar-codigo", (resp) => {
-      _setproducto(resp);
+      if (resp.idTienda !== idTienda) {
+        dispatch(ErrorToken());
+        history.push("/auth");
+      } else {
+         setTienda(resp.idTienda);
+        _setproducto(resp.result);
+      }
     });
   }, [socket]);
 
   useEffect(() => {
     return () => {
       _setproducto(null);
+      setTienda(null);
+      dispatch(LimpiarVariables());
     };
   }, []);
 
-  const GuardarProducto=()=>{
-    //console.log(_producto);
-    
-  }
+  // validar el usaurio
 
-  const segundaForma = () => {
+  useEffect(() => {}, []);
+
+  const Header = () => {
     return (
-      <>
-        {_producto.map((valor) => (
-            <div className="col-md-12">
-              <div className="card mb-3" style={{maxWidth:'auto'}}>
-                <div className="row g-0">
-                  <div className="col-md-4">
-                    <img src={valor.Imagen} className="img-fluid rounded-start" alt="..."/>
-                  </div>
-                  <div className="col-md-8">
-                    <div className="card-body">
-                      <h5 className="card-title text-center titulo">Informacion</h5>
-                      <p className="card-text subtitulo">Nombre Producto:  {valor.NombreProducto}</p>
-                      <p className="card-text subtitulo">Cantidad Disponible:  {valor.Cantidad}</p>
-                      <p className="card-text subtitulo">Precio:  {valor.Precio}</p>
-                      <div class="mb-3 row">
-                          <label for="" class="col-sm-2 subtitulo">Cantidad</label>
-                            <div class="col-sm-3 mt-3">
-                              <input type="number" class="form-control" id="staticEmail"/>
-                            </div>
-                      </div>
-                    </div>
-                    <div className="text-center mt-4">
-                      <button className="btn btn-outline-secondary w-75" onClick={()=> GuardarProducto()}>Adquirir</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        ))}
-      </>
+      <tr>
+        <th>Numero Producto</th>
+        <th>Nombre Producto</th>
+        <th>Cantidad</th>
+        <th>Total a Pagar</th>
+      </tr>
     );
   };
+  const Content = () => {
+    const content = _carrito.map((valor, index) => {
+      return (
+        <tr key={index}>
+          <td>{valor.idProducto}</td>
+          <td>{valor.nombreProducto}</td>
+          <td>{valor.cantidad}</td>
+          <td>{valor.precioTotal}</td>
+        </tr>
+      );
+    });
+    return content;
+  };
+  const TablaDibujar = () => {
+    return <Table Header={Header} Content={Content} />;
+  };
+
+  const GuardarProducto = () => {
+    let txtcantidad = document.querySelector("#txtCantidad").value;
+
+    const { NombreProducto, Precio, idProducto, Cantidad } = _producto[0];
+    if (
+      txtcantidad !== null &&
+      txtcantidad !== undefined &&
+      Number(txtcantidad) > 0
+    ) {
+      if (Cantidad !== 0) {
+        if (txtcantidad < Cantidad) {
+          let totalPrecio = Number(txtcantidad) * Precio;
+          if (BuscarProductoExistente(idProducto)) {
+            setSuma(totalPrecio+suma);
+            EditarProducto(
+              NombreProducto,
+              idProducto,
+              txtcantidad,
+              totalPrecio
+            );
+          } else {
+            setSuma(totalPrecio+suma);
+            
+            dispatch(
+              CarritoCompras(
+                NombreProducto,
+                idProducto,
+                txtcantidad,
+                totalPrecio
+              )
+            );
+          }
+          document.querySelector("#txtCantidad").value = "";
+        } else {
+          alert("Cantidad Insuficiente");
+        }
+      } else {
+        alert("Sin productos en el almacen");
+      }
+    } else {
+      alert("Cantidad Requerida");
+    }
+  };
+
+  const BuscarProductoExistente = (idProducto) => {
+    let bandera = false;
+    _carrito.map((valor) => {
+      if (valor.idProducto === idProducto) {
+        bandera = true;
+      }
+    });
+    return bandera;
+  };
+
+  const EditarProducto = (
+    NombreProducto,
+    idProducto,
+    cantidad,
+    totalPrecio
+  ) => {
+    let data = {};
+    _carrito.forEach((valor) => {
+      if (valor.idProducto === idProducto) {
+        data = {
+          nombreProducto: NombreProducto,
+          idProducto,
+          cantidad: Number(cantidad) + Number(valor.cantidad),
+          precioTotal: Number(totalPrecio) + Number(valor.precioTotal),
+        };
+      }
+    });
+    dispatch(ActualizarCarrito(data));
+  };
+  const PagarProducto=()=>{
+
+  }
 
   return (
     <main>
@@ -67,13 +178,29 @@ export const CarroCompra = () => {
           <h3>Carrito de Compras</h3>
         </div>
         <div className="row">
-          {_producto !== null ? (segundaForma()) : null}
+          {_producto !== null ? (
+            <MostrarProducto
+              _producto={_producto}
+              GuardarProducto={GuardarProducto}
+            />
+          ) : null}
         </div>
         <div className="row">
           <div className="col-md-12">
-            <h1>hola</h1>
-
+            <div className="card__estadisticas">
+              {_carrito !== null &&
+              _carrito !== undefined &&
+              _carrito.length > 0 ? (
+                TablaDibujar()
+              ) : (
+                <h1>Carrito Vacio</h1>
+              )}
+            </div>
           </div>
+        </div>
+        <div className="text-end mt-3">
+          <input type="text" className="total__carrito" disabled value={suma}/>
+          <button className="btn__Carrito" onClick={()=>PagarProducto()}>Pagar</button>
         </div>
       </div>
     </main>

@@ -1,7 +1,7 @@
 import { Types } from "../Types/types";
 
 const initialState ={
-  carrito:[]
+  _carrito:[]
 }
 export default function(state=initialState,action){
 
@@ -10,7 +10,18 @@ export default function(state=initialState,action){
     case Types.agregarproductocarrito:
       return{
         ...state,
-        carrito:[...state.carrito,action.payload]
+        _carrito:[...state._carrito,action.payload]
+      }
+    case Types.limpiarVaribles:
+      return{
+        _carrito:[]
+      }
+    case Types.actualizarCarrito:
+      return{
+        ...state,
+        _carrito:state._carrito.map(res =>(
+          res.idProducto === action.payload.idProducto ? res=action.payload : res
+        ))
       }
     default:
       return state;
