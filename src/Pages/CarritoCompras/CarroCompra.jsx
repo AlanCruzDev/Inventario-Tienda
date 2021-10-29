@@ -168,6 +168,8 @@ export const CarroCompra = () => {
     dispatch(ActualizarCarrito(data));
   };
   const PagarProducto=()=>{
+    // falta agregar la opcion de pagar
+    console.log(_carrito);
 
   }
 
