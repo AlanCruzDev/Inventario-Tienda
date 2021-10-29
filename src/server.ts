@@ -7,13 +7,15 @@ import ProveedorController from './Controllers/proveedor.controller';
 import CategoriaController from './Controllers/categoria.controller';
 import ProductosController from './Controllers/productos.controller';
 import UsuarioController from './Controllers/usuario.controller';
+import VentasController from './Controllers/ventas.controller';
 
-const app = new App([
+const  app =new App([
     new AuthController(),
     new DireccionController(),
     new ProveedorController(),
     new CategoriaController(),
     new ProductosController(),
-    new UsuarioController()
+    new UsuarioController(),
+    new VentasController()
 ],Number (process.env.SERVER_PORT));
 app.listenn(); 
