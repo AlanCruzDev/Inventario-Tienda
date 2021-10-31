@@ -149,6 +149,7 @@ export default class ProductoService {
          EnviarCodigo(results,Number(idtienda));
           return res.json({ok:true});
         }else{
+          console.log(error);
           return res.json({ok:false});
         }
       });

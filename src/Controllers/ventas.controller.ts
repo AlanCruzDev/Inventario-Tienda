@@ -15,7 +15,7 @@ export default class VentasController implements Controller{
 
 
   initializeRoutes(): void {
-    this.router.post(`${this.path}`,this.validacion.instanceWEB.isAuth,this.insertarVenta);
+    this.router.post(`${this.path}`,this.insertarVenta);
   };
 
   insertarVenta=(req:Request,res:Response)=>{
