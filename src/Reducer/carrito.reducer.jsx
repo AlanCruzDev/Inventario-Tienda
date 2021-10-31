@@ -3,6 +3,7 @@ import { Types } from "../Types/types";
 const initialState ={
   _carrito:[]
 }
+// eslint-disable-next-line import/no-anonymous-default-export
 export default function(state=initialState,action){
 
   switch (action.type) {
@@ -11,6 +12,10 @@ export default function(state=initialState,action){
       return{
         ...state,
         _carrito:[...state._carrito,action.payload]
+      }
+    case Types.limpiarCarrito:
+      return{
+        _carrito:[]
       }
     case Types.limpiarVaribles:
       return{

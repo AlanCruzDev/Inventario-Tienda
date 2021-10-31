@@ -125,7 +125,7 @@ export const NuevoProducto = () => {
     }else{
       alert('Seleccione Categoria/Proveedor');
     }
-    //reset();
+    reset();
   };
 
   return (

@@ -5,11 +5,11 @@ import { Table } from "../../Components/Table/table";
 import { useDispatch, useSelector } from "react-redux";
 import { MostrarProducto } from "./mostrarProducto";
 import "./carrito.css";
-
 import {
   CarritoCompras,
   LimpiarVariables,
   ActualizarCarrito,
+  RealizarCompra,
 } from "../../Action/carrito";
 import { ErrorToken } from "../../Action/auth.action";
 import "./carrito.css";
@@ -25,7 +25,7 @@ export const CarroCompra = () => {
   const { socket } = socketContext;
 
   const [_producto, _setproducto] = useState(null);
-  const [geTienda,setTienda] = useState(null);
+  const [geTienda, setTienda] = useState(null);
 
   const { dateUser } = auth;
   const { idTienda, idUsuario } = dateUser[0].results[0];
@@ -33,8 +33,8 @@ export const CarroCompra = () => {
   const totalCantida = !!_carrito && _carrito[0];
 
   // suma de precios del carrito de compras
-  const [suma, setSuma] = useState(0)
-  
+  const [suma, setSuma] = useState(0);
+
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
     if (!token) {
@@ -49,13 +49,14 @@ export const CarroCompra = () => {
         dispatch(ErrorToken());
         history.push("/auth");
       } else {
-         setTienda(resp.idTienda);
+        setTienda(resp.idTienda);
         _setproducto(resp.result);
       }
     });
   }, [socket]);
 
   useEffect(() => {
+    setSuma(0);
     return () => {
       _setproducto(null);
       setTienda(null);
@@ -107,7 +108,7 @@ export const CarroCompra = () => {
         if (txtcantidad < Cantidad) {
           let totalPrecio = Number(txtcantidad) * Precio;
           if (BuscarProductoExistente(idProducto)) {
-            setSuma(totalPrecio+suma);
+            setSuma(totalPrecio + suma);
             EditarProducto(
               NombreProducto,
               idProducto,
@@ -115,8 +116,8 @@ export const CarroCompra = () => {
               totalPrecio
             );
           } else {
-            setSuma(totalPrecio+suma);
-            
+            setSuma(totalPrecio + suma);
+
             dispatch(
               CarritoCompras(
                 NombreProducto,
@@ -167,11 +168,30 @@ export const CarroCompra = () => {
     });
     dispatch(ActualizarCarrito(data));
   };
-  const PagarProducto=()=>{
+  const PagarProducto = () => {
     // falta agregar la opcion de pagar
-    console.log(_carrito);
-
-  }
+    if (_carrito.length > 0) {
+      _carrito.forEach((valor) => {
+        dispatch(
+          RealizarCompra(
+            valor.precioTotal,
+            obtenerFecha(),
+            valor.cantidad,
+            valor.idProducto,
+            idUsuario,
+            idTienda
+          )
+        );
+      });
+      setSuma(0);
+    }else{
+      alert('sin prodocto en el carrito')
+    }
+  };
+  const obtenerFecha = () => {
+    var n = new Date();
+    return n.getFullYear() + "-" + (n.getMonth() + 1) + "-" + n.getDate();
+  };
 
   return (
     <main>
@@ -201,8 +221,10 @@ export const CarroCompra = () => {
           </div>
         </div>
         <div className="text-end mt-3">
-          <input type="text" className="total__carrito" disabled value={suma}/>
-          <button className="btn__Carrito" onClick={()=>PagarProducto()}>Pagar</button>
+          <input type="text" className="total__carrito" disabled value={suma} />
+          <button className="btn__Carrito" onClick={() => PagarProducto()}>
+            Pagar
+          </button>
         </div>
       </div>
     </main>
