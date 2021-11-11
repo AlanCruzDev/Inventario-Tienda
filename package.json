@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsc -w",
-    "start": "nodemon ./dist/server.js"
+    "api": "nodemon ./dist/server.js",
+    "bd":"nodemon ./dist/mysql/servermysql.js",
+    "auth":"nodemon ./dist/Auth/serverAuth.js",
+    "producto":"nodemon ./dist/Productos/serverproductos.js"
   },
   "author": "",
   "license": "ISC",

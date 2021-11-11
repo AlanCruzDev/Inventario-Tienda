@@ -2,7 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.queryVentas = exports.queryEmpleadoTienda = exports.queryProductosTIenda = exports.queryProveedor = exports.queryCategoria = exports.queryEstado = exports.querysLogeo = void 0;
 exports.querysLogeo = {
-    busquedaUsuario: 'select u.idUsuario,u.Nombre,u.contrasena,u.horAcceso, r.Admin,r.Empleado ,r.SuperAdmin,t.idTienda from Usuario u inner join Rol r on u.fkRol =r.idRol INNER JOIN Tienda t on u.fkTienda =t.idTienda where u.NombreUser = ? or u.idUsuario = ? and u.status = 1'
+    busquedaUsuario: 'select u.idUsuario,u.Nombre,u.contrasena,u.horAcceso, r.Admin,r.Empleado ,r.SuperAdmin,t.idTienda from Usuario u inner join Rol r on u.fkRol =r.idRol INNER JOIN Tienda t on u.fkTienda =t.idTienda where u.NombreUser = ? or u.idUsuario = ? and u.status = 1',
+    todoUsuerios: 'select u.idUsuario,u.Nombre,u.contrasena,u.horAcceso, r.Admin,r.Empleado ,r.SuperAdmin,t.idTienda from Usuario u inner join Rol r on u.fkRol =r.idRol INNER JOIN Tienda t on u.fkTienda =t.idTienda ',
+    colorUsuario: 'call GuardarColor(?,?,?)',
+    ObtenercolorUsuario: 'select c.ColorBarra,c.ColorFuente from Colores c where c.fkUser = ?'
 };
 exports.queryEstado = {
     obtenerEstados: 'select e.idEstado ,e.NombreCiudad from Estado e '
@@ -23,5 +26,6 @@ exports.queryEmpleadoTienda = {
     registroempleado: 'call InsertarEmpleado(?,?,?,?,?,?,?)'
 };
 exports.queryVentas = {
-    ventaRealizada: 'call InsertarVenta(?,?,?,?,?,?)'
+    ventaRealizada: 'call InsertarVenta(?,?,?,?,?,?)',
+    ventasFinalizadas: 'SELECT v.idVentas,v.MontoFinal,v.Cantidad ,p.NombreProducto,p.NombreProducto from Ventas v inner join Producto p ON v.fkProducto =p.idProducto inner join Usuario u ON v.fkCliente = u.idUsuario inner JOIN Tienda t ON u.fkTienda = u.fkTienda WHERE (1=1) and v.fechaVenta BETWEEN ? and ? and u.idUsuario = ? and t.idTienda = ?'
 };
