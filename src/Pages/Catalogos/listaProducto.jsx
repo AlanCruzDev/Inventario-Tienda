@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   ListarProductos,
   LimpiarVariables,
+  EleminaProducto
 } from "../../Action/productos.action";
 import { ErrorToken } from "../../Action/auth.action";
 import { FaTrash, FaPen } from "react-icons/fa";
@@ -57,6 +58,11 @@ export const ListaProducto = () => {
     );
   };
 
+  const EleminarProducto=(id)=>{
+    dispatch(EleminaProducto(id));
+
+  }
+
   // falta llenar arreglo en la tabla
   const Content = () => {
     const content = data.map((valor) => {
@@ -68,7 +74,9 @@ export const ListaProducto = () => {
           <td>{valor.NombreProveedor}</td>
           <td>{valor.NombreCategoria}</td>
           <td className="align-items-center">
-            <button className="btn btn-danger mr-3">
+            <button className="btn btn-danger mr-3"
+              onClick={()=>EleminarProducto(valor.idProducto)}
+            >
               <FaTrash />
             </button>
             <button className="btn btn-info mr-3 text-white"

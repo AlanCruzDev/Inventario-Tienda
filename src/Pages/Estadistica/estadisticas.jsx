@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import "./estadisticas.css";
 import { Cards } from "../../Components/Cards/cards";
 import {DataEstadisticas} from './DataEstadisticas';
@@ -6,8 +6,14 @@ import {Table} from '../../Components/Table/table';
 
 export const Estadisticas = () => {
 
+  const [setProducto,getProducto]=useState([
+    {producto:'chetos', cantidad:0},
+    {producto:'Galletas',cantidad:50},
+    {producto:'Paleta', cantidad:5},
+    {producto:'Mazapan', cantidad: 6},
+    {producto:'jeringas', cantidad:4}
+  ]);
   const {data}=DataEstadisticas();
-
   const showCards=()=>{
     return (
       <>
@@ -32,12 +38,15 @@ export const Estadisticas = () => {
     )
   }
   const Content = ()=>{
-    return (
-      <tr>
-        <td>webolas</td>
-        <td>2</td>
-      </tr>
-    );
+    const content =setProducto.map((valor,index)=>{
+      return(
+        <tr key={index}>
+          <td>{valor.producto}</td>
+          <td>{valor.cantidad}</td>
+        </tr>
+      );
+    });
+    return content;
   }
   const TableDrawer =()=>{
     return (

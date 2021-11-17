@@ -44,60 +44,6 @@ export const MenuAdmin = ({color2}) => {
           Nuevo Producto
         </Link>
       </div>
-
-      <h2
-        style={color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }}
-      >
-        FIANZAS
-      </h2>
-      <div
-        className="sidebar__link"
-        style={color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }}
-      >
-        <i>
-          <FaCashRegister />
-        </i>
-        <Link
-          to=''
-          style={
-            color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
-          }
-        >
-          Caja
-        </Link>
-      </div>
-      <div
-        className="sidebar__link"
-        style={color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }}
-      >
-        <i>
-          <FaCashRegister />
-        </i>
-        <Link
-          to=''
-          style={
-            color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
-          }
-        >
-          Corte de Caja
-        </Link>
-      </div>
-      <div
-        className="sidebar__link"
-        style={color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }}
-      >
-        <i>
-          <FaClipboardList />
-        </i>
-        <Link
-          to=''
-          style={
-            color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
-          }
-        >
-          Balance
-        </Link>
-      </div>
       <h2
         style={color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }}
       >

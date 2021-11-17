@@ -18,6 +18,7 @@ export const VerificarUser=(idUser,token)=>{
     try{
       TokenAuth(token);
       const respuesta = await clienteAxiosAuth.get(`auth/renew/${idUser}`);
+      alert(respuesta.data);
       dispatch(Logeado(respuesta.data));
     }catch(e){
       console.log(e);

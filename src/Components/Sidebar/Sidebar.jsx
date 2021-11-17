@@ -13,20 +13,13 @@ export const Sidebar = ({ sidebarOpen, closeSidebar }) => {
 
   const { color } = useSelector((state) => state.color);
   const { dateUser } = useSelector((state) => state.auth);
-  const { ColorBarra, ColorFuente } = !!color && color[0];
+  const { ColorBarra, ColorFuente } = !!color && color[0] !== undefined ?  color[0] : {ColorBarra:'#020501', ColorFuente:'#f3f4f6'};
   const { Admin, idUsuario } = dateUser[0].results[0];
-  
-  //dispatch(BuscarColor(idUsuario));
   useEffect(()=>{
     dispatch(BuscarColor(idUsuario));
-  
-
   },[ColorBarra])
 
-
-
   useEffect(()=>{
-
     return ()=>{
       dispatch(LimpiarVariables());
     }

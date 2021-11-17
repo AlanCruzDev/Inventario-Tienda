@@ -63,6 +63,20 @@ export const ActualizarProducto=(data)=>{
     }
   }
 }
+export const EleminaProducto=(idProducto)=>{
+  return async (dispatch)=>{
+    try{
+      const respuesta=await clienteAxiosProductos.delete(`/productos/${idProducto}`);
+      if(respuesta.data.ok){
+        alert('Dato Eleminado');
+      }else{
+        alert('No Eleminado');
+      }
+    }catch(e){
+      alert(e);
+    }
+  }
+}
 
 const ExistoListado=(data)=>({
   type:Types.productoLista,
