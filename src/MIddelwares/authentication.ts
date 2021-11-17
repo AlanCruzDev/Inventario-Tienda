@@ -14,7 +14,7 @@ export default class Authentication {
 
     public isAuth = (req: Request, res: Response, next: NextFunction) => {
       if (req.headers.authorization !== null) {
-        let Token = req.headers.authorization as string;
+        let Token =<string> req.headers.authorization;
         let PrivateKey = fs.readFileSync("./src/security/private.pem", "utf8");        
         jwt.verify(
           Token,

@@ -9,7 +9,7 @@ dotenv_1.default.config();
 const usuario_controller_1 = __importDefault(require("./Api/Controllers/usuario.controller"));
 const ventas_controller_1 = __importDefault(require("./Api/Controllers/ventas.controller"));
 const app = new app_1.default([
-    new usuario_controller_1.default(),
-    new ventas_controller_1.default()
+    new ventas_controller_1.default(),
+    new usuario_controller_1.default()
 ], Number(process.env.SERVER_PORT));
 app.listenn();

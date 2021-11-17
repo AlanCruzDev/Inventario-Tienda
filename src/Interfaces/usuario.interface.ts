@@ -1,4 +1,5 @@
 export interface Usuario {
+  _idUsuario?:number
   _Nombre:string;
   _Paterno:string;
   _Materno:string;

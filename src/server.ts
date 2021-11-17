@@ -5,7 +5,7 @@ import UsuarioController from './Api/Controllers/usuario.controller';
 import VentasController from './Api/Controllers/ventas.controller';
 
 const  app =new App([
-    new UsuarioController(),
-    new VentasController()
+    new VentasController(),
+    new UsuarioController()
 ],Number (process.env.SERVER_PORT));
 app.listenn(); 

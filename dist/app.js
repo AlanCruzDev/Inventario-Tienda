@@ -21,11 +21,11 @@ class App {
     }
     initializeMiddlewares() {
         this.app.use((0, cors_1.default)({ origin: true, credentials: true }));
-        this.app.use(express_1.default.json({ limit: '50mb' }));
+        this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: true }));
     }
     listenn() {
-        console.log(`App listening on the port ${this.port}`);
+        console.log(`Usuario listening on the port ${this.port}`);
     }
 }
 exports.default = App;

@@ -10,7 +10,7 @@ export default class AuthService {
     try {
       await mysqlConnection.query(
         querysLogeo.busquedaUsuario,
-        [data.usser, null],
+        [data.usser],
         (error: MysqlError | null, results: any[], fields: any) => {
           try{
             if (!error) {

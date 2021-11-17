@@ -1,5 +1,5 @@
 export const querysLogeo ={
-  busquedaUsuario:'select u.idUsuario,u.Nombre,u.contrasena,u.horAcceso, r.Admin,r.Empleado ,r.SuperAdmin,t.idTienda from Usuario u inner join Rol r on u.fkRol =r.idRol INNER JOIN Tienda t on u.fkTienda =t.idTienda where u.NombreUser = ? or u.idUsuario = ? and u.status = 1',
+  busquedaUsuario:'select u.idUsuario,u.Nombre,u.contrasena,u.horAcceso, r.Admin,r.Empleado ,r.SuperAdmin,t.idTienda from Usuario u inner join Rol r on u.fkRol =r.idRol INNER JOIN Tienda t on u.fkTienda =t.idTienda where u.NombreUser = ?  and u.status = 1',
   todoUsuerios:'select u.idUsuario,u.Nombre,u.contrasena,u.horAcceso, r.Admin,r.Empleado ,r.SuperAdmin,t.idTienda from Usuario u inner join Rol r on u.fkRol =r.idRol INNER JOIN Tienda t on u.fkTienda =t.idTienda ',
   colorUsuario:'call GuardarColor(?,?,?)',
   ObtenercolorUsuario:'select c.ColorBarra,c.ColorFuente from Colores c where c.fkUser = ?'
@@ -20,7 +20,11 @@ export const queryProductosTIenda={
   ObtenerProductoCodigoTienda:'select P.idProducto,A.Cantidad ,P.Imagen ,P.NombreProducto ,P.Precio FROM Tienda T INNER join Almacen A on T.idTienda = A.fkTienda INNER join Producto P on A.fkProducto = P.idProducto	INNER JOIN Proveedor PR ON P.fkProveedor =PR.idProveedor INNER JOIN Categoria CA ON CA.idCategoria =P.fkCategoria WHERE (1=1) AND P.CodigoSerie = ? and T.idTienda = ?'
 }
 export const queryEmpleadoTienda={
-  registroempleado:'call InsertarEmpleado(?,?,?,?,?,?,?)'
+  registroempleado:'call InsertarEmpleado(?,?,?,?,?,?,?)',
+  obtenerUsuarios:'select u.idUsuario,concat(u.Nombre ,u.Paterno ,u.Materno ) as nombre,u.horAcceso,t.nombreTienda, u.status from Usuario u inner join Rol r on u.fkRol =r.idRol INNER JOIN Tienda t on u.fkTienda =t.idTienda where idTienda =  ? and r.Empleado  = 1',
+  desactivarUsuario:'update usuario set status =false where idUsuario = ? and fkTienda  = ?',
+  activarUsuario:'update usuario set status =true where idUsuario = ? and fkTienda  = ?',
+  obtenerCorreo:'select correo,t.nombreTienda from Usuario u inner join Rol r on u.fkRol =r.idRol INNER JOIN Tienda t on u.fkTienda =t.idTienda where idTienda =  ? and r.Admin  = 1'
 }
 export const queryVentas={
   ventaRealizada:'call InsertarVenta(?,?,?,?,?,?)',

@@ -14,7 +14,7 @@ export default class DireccionController implements Controller{
     }
     initializeRoutes():void{
       /*Debemos de ejecuar esta ruta de inicio*/
-      //this.router.get(`${this.path}/estados`,this.InsertarEstados);
+      //this.router.get(`${this.path}/estados/insertar`,this.InsertarEstados);
       this.router.get(`${this.path}/municipios/:estado`,this.BuscarMunicipios);
       this.router.get(`${this.path}/estados`,this.ObtenerEstados);
     }
