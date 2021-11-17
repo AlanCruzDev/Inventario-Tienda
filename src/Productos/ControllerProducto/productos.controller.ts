@@ -19,6 +19,7 @@ export default class ProductosController implements Controller {
       this.validacion.instanceWEB.isAuth,
       this.insertarProducto
     );
+    this.router.delete(`${this.path}/:idProducto`,this.eleminaProducto);
     this.router.get(`${this.path}/listado/:id`, this.listarProductos);
     this.router.get(`${this.path}/:id`, this.ObtenerProducto);
     this.router.get(`${this.path}/barras/:codigo/:idtienda`,this.validacion.instanceWEB.isAuth,this.ObtenerCodigoBarras);
@@ -27,6 +28,9 @@ export default class ProductosController implements Controller {
       this.validacion.instanceWEB.isAuth,
       this.ModificarProducto
     );
+  }
+  eleminaProducto=(req:Request,res:Response)=>{
+    this.server.EleminarProducto(req,res);
   }
 
   insertarProducto = (req: Request, res: Response) => {

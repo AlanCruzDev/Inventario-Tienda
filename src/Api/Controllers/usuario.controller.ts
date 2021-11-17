@@ -16,7 +16,7 @@ export default class UsuarioController implements Controller{
   initializeRoutes():void{
     this.router.patch(`${this.path}/:idUsuario/:idTienda`,this.DesactivaUsuario);
     this.router.patch(`${this.path}/activar/:idUsuario/:idTienda`,this.ActivaUsuario);
-    this.router.post(`${this.path}`,this.validacion.instanceWEB.isAuth,this.InsertaUsuario);
+    this.router.post(`${this.path}`,this.InsertaUsuario);
     this.router.post(`${this.path}/color/nuevo`,this.ColoresInsertar);
     this.router.get(`${this.path}/color/:idUser`,this.ColorUsuario);
     this.router.get(`${this.path}/lista/:idTienda`,this.SacaUsuarios);

@@ -46,6 +46,32 @@ export default class ProductoService {
       })
     }
   }
+  EleminarProducto=async(req:Request,res:Response)=>{
+    const {idProducto}=req.params;
+    console.log(idProducto);
+    try{
+      mysqlConnection.query('call EleminarProducto (?)',[idProducto],(error: MysqlError | null, results: any[], fields: any)=>{
+        if (!error) {
+          if(parseMysqlPost(results) === -1){
+            res.json({
+              ok: false,
+            });
+          }else{
+            res.json({
+              ok: true,
+            });
+          }
+        } else {
+          console.log(error);
+          res.json({
+            ok: false,
+          })
+        }
+      });
+    }catch(e){
+      console.log(e);
+    }
+  }
   ListarProductosTienda = async (req: Request, res: Response) => {
     const { id } = req.params
     try {

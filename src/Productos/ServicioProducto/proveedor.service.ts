@@ -33,6 +33,7 @@ export default class ProveedorService {
               });
             }
           } else {
+            console.log(error);
             res.json({
               ok: false,
             });
