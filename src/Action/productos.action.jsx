@@ -1,13 +1,13 @@
 import { Types } from "../Types/types";
-import clienteAxios from "../Config/axios";
-import TokenAuth from "../Config/axios.headers";
+import clienteAxiosProductos from "../Config/axiosProductos";
+import TokenHeaderProducto from "../Config/axiosHeaderProductos";
 
 export const InsertarProducto=(data)=>{
   return async (dispatch)=>{
     try{
       const token = JSON.parse(localStorage.getItem('token'));
-      TokenAuth(token);
-      const respuesta = await clienteAxios.post('/productos',data);
+      TokenHeaderProducto(token);
+      const respuesta = await clienteAxiosProductos.post('/productos',data);
       if(respuesta.data.ok === true){
         dispatch(ExsitoGuardarProducto());
       }else{
@@ -22,8 +22,8 @@ export const ListarProductos=(id)=>{
   return async (dispatch)=>{
     try{
         const token = JSON.parse(localStorage.getItem('token'));
-        TokenAuth(token);
-        const respuesta = await clienteAxios.get(`/productos/listado/${id}`);
+        TokenHeaderProducto(token);
+        const respuesta = await clienteAxiosProductos.get(`/productos/listado/${id}`);
         dispatch(ExistoListado(respuesta.data));
     }
     catch(e){
@@ -35,8 +35,8 @@ export const ObtenerProducto=(id)=>{
   return async (dispatch)=>{
     try{
       const token = JSON.parse(localStorage.getItem('token'));
-      TokenAuth(token);
-      const respuesta = await clienteAxios.get(`/productos/${id}`);
+      TokenHeaderProducto(token);
+      const respuesta = await clienteAxiosProductos.get(`/productos/${id}`);
       if(respuesta.data.ok === true){
         dispatch(ObtenerUnoProducto(respuesta.data));
       }else{
@@ -51,8 +51,8 @@ export const ActualizarProducto=(data)=>{
   return async (dispatch)=>{
     try{
       const token = JSON.parse(localStorage.getItem('token'));
-      TokenAuth(token);
-      const respuesta = await clienteAxios.put('/productos',data);
+      TokenHeaderProducto(token);
+      const respuesta = await clienteAxiosProductos.put('/productos',data);
       if(respuesta.data.ok === true){
         dispatch(ExsitoGuardarProducto());
       }else{

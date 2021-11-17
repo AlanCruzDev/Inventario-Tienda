@@ -1,7 +1,9 @@
 import { Types } from "../Types/types";
 
 const initialState ={
-  registro:null
+  registro:null,
+  empleados:null,
+  bandera:false
 }
 export default function(state=initialState,action){
 
@@ -12,6 +14,15 @@ export default function(state=initialState,action){
         ...state,
         registro:true
       }
+    case Types.obtenerEmpleados:
+      return{
+        ...state,
+        empleados:action.payload
+      }
+    case Types.limpiarArreglo:
+      return {
+        empleados:null
+      }
     case Types.fracasoregistoUsuario:
       return{
         ...state,
@@ -19,7 +30,8 @@ export default function(state=initialState,action){
       }
     case Types.limpiarVaribles:
       return {
-        registro:null
+        registro:null,
+        empleados:null
       }
     default:
       return state;

@@ -1,6 +1,5 @@
 import { Types } from "../Types/types";
 import clienteAxios from "../Config/axios";
-import TokenAuth from '../Config/axios.headers';
 
 
 export const CarritoCompras=(nombreProducto,idProducto,cantidad,precioTotal)=>{

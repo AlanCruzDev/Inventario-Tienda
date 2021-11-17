@@ -16,6 +16,7 @@ import { FormularioProveedores } from "../../Components/Formularios/formularioPr
 import { MensajeAlerta } from "../../middlewares/alerts.middle";
 
 export const NuevoProducto = () => {
+  
   const history = useHistory();
   const dispatch = useDispatch();
   const [proveedorSet, getproveedor] = useState(false);
@@ -62,19 +63,26 @@ export const NuevoProducto = () => {
   }, [proveedorSet]);
 
   useEffect(() => {
-    dispatch(GetCategoria());
-    dispatch(ListarProveedores());
 
     return () => {
       dispatch(LimpiarVariables());
     };
   }, [producto.bandera]);
 
+  useEffect(()=>{
+    LlenadoSelectores();
+  },[]);
+
+  const LlenadoSelectores=()=>{
+    dispatch(GetCategoria());
+    dispatch(ListarProveedores());
+  }
   const ActivarProveedor = () => {
     getproveedor(true);
   };
   const DesactivarProveedor = () => {
     getproveedor(false);
+    LlenadoSelectores();
   };
 
   const uploadImagen = async (e) => {

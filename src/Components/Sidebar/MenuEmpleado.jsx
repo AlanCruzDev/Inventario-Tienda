@@ -2,12 +2,7 @@ import React from 'react';
 import "../Sidebar/Sidebar.css";
 import { FaShoppingCart,FaAppleAlt,FaClipboard} from 'react-icons/fa';
 import { Link } from "react-router-dom";
-import { useSelector} from "react-redux";
-
-export const MenuEmpleado =()=>{
-
-  const { color } = useSelector((state) => state.color);
-  const { color2 } = !!color && color[0];
+export const MenuEmpleado =({color2})=>{
 
   return (
     <>
@@ -66,7 +61,7 @@ export const MenuEmpleado =()=>{
           <FaShoppingCart />
         </i>
         <Link
-          to="/hola"
+          to="/ComprasRealizadas"
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
           }

@@ -1,10 +1,10 @@
-import clienteAxios from '../Config/axios';
+import clienteAxiosProductos from "../Config/axiosProductos";
 import {Types} from '../Types/types';
 
 export const ObtenerEstados=()=>{
   return async (dispatch)=>{
     try{
-      const respuesta = await clienteAxios.get('/direccion/estados');
+      const respuesta = await clienteAxiosProductos.get('/direccion/estados');
       dispatch(EstadosObteniendo(respuesta.data));
     }catch(e){
       console.log(e);
@@ -14,11 +14,10 @@ export const ObtenerEstados=()=>{
 export const ObtenerMunicipios=(municipio)=>{
   return async (dispatch)=>{
     try{
-      const respuesta = await clienteAxios.get(`/direccion/municipios/${municipio}`);
+      const respuesta = await clienteAxiosProductos.get(`/direccion/municipios/${municipio}`);
       dispatch(MunicipioObtener(respuesta.data));
     }catch(e){
       console.log(e);
-
     }
   }
 }

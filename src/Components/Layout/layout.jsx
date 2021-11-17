@@ -14,6 +14,7 @@ import {NuevoProducto} from '../../Pages/Catalogos/nuevoProducto';
 import {ListaProducto} from '../../Pages/Catalogos/listaProducto';
 import {EditarProducto} from '../../Pages/Catalogos/EditarProducto';
 import { RegistroUsuario } from "../../Pages/Usuarios/RegistroUsuario";
+import {ConfigUsuario} from '../../Pages/Usuarios/ConfigUsuario';
 
 
 export const Layout = () => {
@@ -48,6 +49,7 @@ export const Layout = () => {
           <WithRoute path="/listaproductos" Component={ListaProducto}/>
           <WithRoute path="/editarProducto/:id" Component={EditarProducto}/>
           <WithRoute path="/registrousuario" Component={RegistroUsuario}/>
+          <WithRoute path="/usuarioConfig" Component={ConfigUsuario}/>
         </Switch>
         <Sidebar sidebarOpen={sidebarOpen} closeSidebar={CloseSideBar} />
       </div>

@@ -2,13 +2,9 @@ import React from "react";
 import "../Sidebar/Sidebar.css";
 import { FaUser,FaUserSlash,FaLemon,FaMarker,FaClipboard,FaCashRegister,FaClipboardList} from 'react-icons/fa';
 import { Link } from "react-router-dom";
-import { useSelector} from "react-redux";
 
 
-export const MenuAdmin = () => {
-  const { color } = useSelector((state) => state.color);
-  const { color2 } = !!color && color[0];
-
+export const MenuAdmin = ({color2}) => {
   return (
     <>
       <h2
@@ -115,7 +111,6 @@ export const MenuAdmin = () => {
           <FaClipboard />
         </i>
         <Link
-          to=''
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
           }
@@ -153,7 +148,7 @@ export const MenuAdmin = () => {
           <FaUserSlash />
         </i>
         <Link
-          to=''
+          to='/usuarioConfig'
           style={
             color2 !== undefined ? { color: color2 } : { color: "#f3f4f6" }
           }

@@ -1,5 +1,6 @@
 export const Types = {
   newColor:'[Color] Guardado',
+  getColor:'[Color] get',
   logeo:'[Auth] inicarLogeo',
   errorLogeo:'[Auth] errorLogeo',
   errorToken:'[token] errorToken',
@@ -17,9 +18,14 @@ export const Types = {
   productoLista:'[Producto] ObtenerListado',
   productoUno:'[Producto] ObtenerProducto',
   registroUsuario:'[Usuario] registroUsuarioExito',
+  obtenerEmpleados:'[Usuario] sacaEmpleados',
+  desactivaUsuario:'[Usuario]',
+  activarUsuario:'[Usuario]',
   fracasoregistoUsuario:'[Usuario] registroUsuarioFracaso',
   agregarproductocarrito:'[Carrito] agregaproducto',
   actualizarCarrito:'[Carrito] actualizarcarrito',
   ventaRealizada:'[Venta] ventaRealizada',
-  limpiarCarrito:'[Carrito] limpiaCarrito'
+  ventasListado:'[Venta] ventaLista',
+  limpiarCarrito:'[Carrito] limpiaCarrito',
+  limpiarArreglo:'[Lista]'
 }

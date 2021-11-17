@@ -1,13 +1,14 @@
 import { Types } from "../Types/types";
-import clienteAxios from "../Config/axios";
-import TokenAuth from '../Config/axios.headers';
+import clienteAxiosProductos from "../Config/axiosProductos";
+import TokenHeaderProducto from '../Config/axiosHeaderProductos';
 
 export const InsertarProveedor=(body)=>{
+  
   return async (dispatch)=>{
     try{
       const token = JSON.parse(localStorage.getItem('token'));
-      TokenAuth(token);
-      const respuesta = await clienteAxios.post('/proveedor',body);
+      TokenHeaderProducto(token);
+      const respuesta = await clienteAxiosProductos.post('/proveedor',body);
       if(respuesta.data.ok === true){
           dispatch(ExitoProveedor());
       }else{
@@ -17,12 +18,15 @@ export const InsertarProveedor=(body)=>{
       alert(e);
     }
   }
+
 }
 
 export const ListarProveedores=()=>{
   return async (dispatch)=>{
     try{
-      const respuesta = await clienteAxios.get('/proveedor');
+      const token = JSON.parse(localStorage.getItem('token'));
+      TokenHeaderProducto(token);
+      const respuesta = await clienteAxiosProductos.get('/proveedor');
       dispatch(ExistoListado(respuesta.data.results))
     }catch(e){
       alert(e);

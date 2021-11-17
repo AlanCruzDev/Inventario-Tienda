@@ -3,7 +3,7 @@ import { useSocket } from '../Hooks/useSocket';
 import proyectSocket from './socketContext';
 
 const SocketState = (props) => {
-  const {socket,online}=useSocket('http://192.168.100.3:5000');
+  const {socket,online}=useSocket('http://192.168.100.3:5003');
   return ( 
     <proyectSocket.Provider
       value={{

@@ -39,9 +39,8 @@ export const Login = () => {
     <div className="fondo">
       <div className="container">
         <div className="row justify-content-center">
-          <br />
           <div className="col-md-6 mt-5">
-            <div className="mt-5 fondo__login">
+            <div className="formulario fondo__login">
               <form className="login-form" onSubmit={VerificarUser}>
                 <h3 className="text-center mt-3 titlo__login">Bienvenido</h3>
                 <div className="form-group mt-3">

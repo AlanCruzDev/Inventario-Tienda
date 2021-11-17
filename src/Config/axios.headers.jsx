@@ -1,9 +1,10 @@
-import clienteAxios from './axios';
-const TokenAuth =(token)=>{
+import clienteAxiosAuth from "./axiosAuth";
+
+const TokenHeader =(token)=>{
   if(token){
-    clienteAxios.defaults.headers.common['Authorization'] = token;
+    clienteAxiosAuth.defaults.headers.common['Authorization'] = token;
   }else{
-    delete clienteAxios.defaults.headers.common['Authorization'];
+    delete clienteAxiosAuth.defaults.headers.common['Authorization'];
   }
 }
-export default TokenAuth;
+export default TokenHeader;

@@ -1,7 +1,6 @@
-
 .fondo{
   /*background: rgb(242,203,203);*/
-  background-image: url(../../img/FondoAuth/fondo.jpeg);
+  background-image: url(../../img/FondoAuth/bebe.jpeg);
   /*background: linear-gradient(0deg, rgba(113,127,130,1) 50%, rgba(242,203,203,1) 50%);*/
   background-position: center center;
   background-repeat: no-repeat;
@@ -11,11 +10,17 @@
 h1{
   font-size: 3rem;
 }
+h3{
+  font-size: 80px;
+}
 .login-form{
   width: 100%;
   max-width: 430px;
   padding: 15px;
   margin: auto;
+}
+.formulario{
+  margin-top: 22%;
 }
 .fondo__login{
   background-color: white;
@@ -45,3 +50,8 @@ h1{
   }
 }
 
+@media (min-width:768px) {
+  .formulario{
+    margin-top: 13%;
+  }
+}

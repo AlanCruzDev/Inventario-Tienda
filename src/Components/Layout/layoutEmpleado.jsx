@@ -8,7 +8,7 @@ import {ErrorToken} from '../../Action/auth.action';
 import {useDispatch} from 'react-redux';
 import {CatalogoProductos} from '../../Pages/Productos/CatalogoProductos';
 import { CarroCompra } from "../../Pages/CarritoCompras/CarroCompra";
-
+import {VentasRealizadas} from '../../Pages/VentasRealizadas/ventasRealizadas';
 export const LayoutEmpleado=()=>{
   
   const history=useHistory();
@@ -38,6 +38,7 @@ export const LayoutEmpleado=()=>{
         <Switch>  
           <WithRoute path="/catalogoproductos" Component={CatalogoProductos}/>   
           <WithRoute path="/carrito" Component={CarroCompra}/>       
+          <WithRoute path="/ComprasRealizadas" Component={VentasRealizadas}/>       
         </Switch>
         <Sidebar sidebarOpen={sidebarOpen} closeSidebar={CloseSideBar} />
       </div>

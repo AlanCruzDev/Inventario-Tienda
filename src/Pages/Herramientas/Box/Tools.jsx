@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import "./tools.css";
 import { FaBurn } from "react-icons/fa";
 import { CompactPicker } from "react-color";
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import {NuevoColor} from '../../../Action/color.action';
 
 export const Tools = () => {
 
+  const {dateUser} = useSelector((state)=> state.auth);
+  const {idUsuario} =dateUser[0].results[0];
   const dispatch=useDispatch();
   const color = "white";
   const [getcolor, setcolor] = useState({color1:'',color2:''});
-  const GuardarCambios=()=>dispatch(NuevoColor(getcolor));
+  const GuardarCambios=()=>dispatch(NuevoColor(getcolor,idUsuario));
+
   
   return (
     <div className="tools" style={{ backgroundColor: color }}>

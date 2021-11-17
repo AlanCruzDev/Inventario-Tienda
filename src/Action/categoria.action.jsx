@@ -1,11 +1,11 @@
 import { Types } from "../Types/types";
-import clienteAxios from "../Config/axios";
+import clienteAxiosProductos from "../Config/axiosProductos";
 
 
 export const GetCategoria=()=>{
   return async (dispatch)=>{
     try{
-      const respuesta = await clienteAxios.get('/categoria');
+      const respuesta = await clienteAxiosProductos.get('/categoria');
       dispatch(ExistoCategorias(respuesta.data.results))
     }catch(e){
       alert(e);
